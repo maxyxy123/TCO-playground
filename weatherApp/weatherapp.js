@@ -1,4 +1,4 @@
-async function api(city) {
+async function api() {
     try {
         const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=b8602f0622b140c08fb140828262201&q=${city}
 `)
@@ -13,7 +13,7 @@ async function api(city) {
         console.log('Loi', error)
     }
 }
-api('hanoi')
+
 
 const input = document.getElementById('input')
 const cityName = document.querySelector('.city-name')
@@ -27,7 +27,7 @@ const button = document.querySelector('.btn')
 button.addEventListener('click', async () => {
     const city = input.value.toLowerCase();
     const data = await api(city)
-    cityName.textContent = data.location?.name ?? 'No data';
+    cityName.textContent = data.location?.name ?? 'No data'; 
     cityTem.textContent = data.current?.temp_c + 'C' ?? 'No data';
     cityTime.textContent = data.location?.localtime ?? 'No data';
     cityCond.textContent = data.current?.condition.text ?? 'No data';
